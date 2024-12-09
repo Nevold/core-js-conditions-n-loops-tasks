@@ -112,8 +112,32 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanArr = [
+    ['M', 1000],
+    ['CM', 900],
+    ['D', 500],
+    ['CD', 400],
+    ['C', 100],
+    ['XC', 90],
+    ['L', 50],
+    ['XL', 40],
+    ['X', 10],
+    ['IX', 9],
+    ['V', 5],
+    ['IV', 4],
+    ['I', 1],
+  ];
+  let roman = '';
+  let numTemp = num;
+
+  for (let index = 0; index < romanArr.length; index += 1) {
+    while (numTemp >= romanArr[index][1]) {
+      roman += romanArr[index][0];
+      numTemp -= romanArr[index][1];
+    }
+  }
+  return roman;
 }
 
 /**
@@ -131,8 +155,59 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let resultTemp = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '0':
+        resultTemp += ' zero';
+        break;
+      case '1':
+        resultTemp += ' one';
+        break;
+      case '2':
+        resultTemp += ' two';
+        break;
+      case '3':
+        resultTemp += ' three';
+        break;
+      case '4':
+        resultTemp += ' four';
+        break;
+      case '5':
+        resultTemp += ' five';
+        break;
+      case '6':
+        resultTemp += ' six';
+        break;
+      case '7':
+        resultTemp += ' seven';
+        break;
+      case '8':
+        resultTemp += ' eight';
+        break;
+      case '9':
+        resultTemp += ' nine';
+        break;
+      case ',':
+      case '.':
+        resultTemp += ' point';
+        break;
+      case '-':
+        resultTemp += ' minus';
+        break;
+      default:
+        break;
+    }
+  }
+
+  let result = '';
+  for (let i = 1; i < resultTemp.length; i += 1) {
+    result += resultTemp[i];
+  }
+
+  return result;
 }
 
 /**
